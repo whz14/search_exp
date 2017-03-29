@@ -1,5 +1,6 @@
 import redis
 import re
+import traceback
 
 r = redis.Redis()       # default local host
 
@@ -54,7 +55,7 @@ all_data = all_data.split('#index ')
 i = 0
 try:
     for data in all_data:
-        if i < 21431:
+        if i < 21487:
             i += 1
             continue
         if i % 100 == 0:
@@ -64,6 +65,7 @@ try:
             continue
         ind = re.search('(\d*)', data).group(1)
         r.set('#' + ind, data)
-except Exception:
+except Exception, err:
     print i
+    traceback.print_exc()
 f.close()
