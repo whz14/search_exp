@@ -26,6 +26,6 @@ urlpatterns = [
 # <<<<<<< HEAD
 #     url(r'search/?', views.search),
 # =======
-    url(r'^index/search/?', views.search),
+    url(r'^search/?', views.search),
     url(r'^coauthor/?', views.co_authors)
 ]
