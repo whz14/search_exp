@@ -1,5 +1,6 @@
 import redis
 import re
+import traceback
 
 r = redis.Redis()       # default local host
 
@@ -9,6 +10,9 @@ all_data = all_data.split('#index ')
 i = 0
 try:
     for data in all_data:
+        if i < 1712434:
+            i += 1
+            continue
         if i % 100 == 0:
             print i, ' of (domain)', len(all_data)
         i += 1
@@ -31,6 +35,9 @@ corrs = f.read().split('\n')
 i = 0
 try:
     for corr in corrs:
+        if i < 4258947:
+            i += 1
+            continue
         if i % 100 == 0:
             print i, ' of co-authors', len(corrs)
         i += 1
@@ -48,6 +55,9 @@ all_data = all_data.split('#index ')
 i = 0
 try:
     for data in all_data:
+        if i < 21487:
+            i += 1
+            continue
         if i % 100 == 0:
             print i, ' of (index)', len(all_data)
         i += 1
@@ -55,6 +65,7 @@ try:
             continue
         ind = re.search('(\d*)', data).group(1)
         r.set('#' + ind, data)
-except Exception:
+except Exception, err:
     print i
+    traceback.print_exc()
 f.close()
