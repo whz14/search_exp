@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+</head>
+<body>
+	<h1>search results for your keys</h1>
+	<div id="content">
+	<h2>search results for your keys</h2>
+	<table  BORDER="1" align = "center" cellspacing="0" cellpadding="0">
+		<tr><td> profs </td> <td> H-index </td> </tr>
+		{% for item in lis%}
+		<tr><td> <a href="/coauthor?id={{ item.id }}"> {{item.name}} </a></td>
+			<td> {{ item.h_index }} </td>  </tr>
+		{%endfor%}
+	</table>
+	</div>
+</body>
+
+</body>
+</html>
