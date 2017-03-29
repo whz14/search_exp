@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>co-authors of the author</h1>
+	<div id="content">
+	<table  BORDER="1" align = "center" cellspacing="0" cellpadding="0">
+		<tr><td> name </td> <td> times </td> </tr>
+		{% for item in lis%}
+		<tr><td> {{item.name}}</td>
+			<td> {{ item.t }} </td>  </tr>
+		{%endfor%}
+	</table>
+	</div>
+</body>
+</html>

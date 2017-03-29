@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <title>index</title>
+</head>
+
+<body>
+    <p>Hello, {{ user }} of {{ email }}</p>
+    <div>
+        <input type="text" id="domains"/>
+        <button type = "button" id="search" onclick="search()">search</button>
+    </div>
+    <div id = "experts">
+{# search result will be appended here #}
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function search() {
+        console.log('fuck')
+        var domain = $("#domains").val();
+        var data = {'domains': domain};
+        console.log(data)
+        $.ajax({
+            type: 'GET',
+            url: 'search/',
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+{#                $("#experts").empty();#}
+                var experts = data['experts'];
+                console.log(experts);
+                for(var exp_key in experts) {
+                    var line = "<p><a href=\"/coauthor?id=" + experts[exp_key].id +
+                            "\">" + experts[exp_key].name +"</a>        " + experts[exp_key].h + "</p>";
+    				$("#experts").append(line);
+                }
+            },
+            error: function () {
+                alert("failed");
+            }
+        })
+    }
+</script>
