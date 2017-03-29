@@ -20,9 +20,9 @@ from login import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.login),
-    url(r'^login/', views.login),
-    url(r'^redirect/$', views.redirect),
-    url(r'^index/$', views.index),
-    url(r'^index/search', views.search),
-    url(r'^coauthor', views.co_authors)
+    url(r'^login/?', views.login),
+    url(r'^redirect/?$', views.redirect),
+    url(r'^index/?$', views.index),
+    url(r'search/?', views.search),
+    url(r'^coauthor/?', views.co_authors)
 ]
