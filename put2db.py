@@ -9,7 +9,7 @@ all_data = all_data.split('#index ')
 i = 0
 for data in all_data:
     if i % 100 == 0:
-        print i, ' of ', len(all_data)
+        print i, ' of (domain)', len(all_data)
     i += 1
     if data == '':
         continue
@@ -28,7 +28,7 @@ corrs = f.read().split('\n')
 i = 0
 for corr in corrs:
     if i % 100 == 0:
-        print i, ' of ', len(corrs)
+        print i, ' of co-authors', len(corrs)
     i += 1
     corr = corr[1:]
     tmp = corr.split('\t')
@@ -42,7 +42,7 @@ all_data = all_data.split('#index ')
 i = 0
 for data in all_data:
     if i % 100 == 0:
-        print i, ' of ', len(all_data)
+        print i, ' of (index)', len(all_data)
     i += 1
     if data == '':
         continue
