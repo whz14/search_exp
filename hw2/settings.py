@@ -25,7 +25,7 @@ SECRET_KEY = 'g(+mn3bfmt!e3f02&loel2b^)i287-lgd73h+3s^&-(5d3_umg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.187.128.208', '127.0.0.1']
+ALLOWED_HOSTS = ['52.187.128.208', '127.0.0.1', u'whzhw2.southeastasia.cloudapp.azure.com']
 
 
 # Application definition
