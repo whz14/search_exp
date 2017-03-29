@@ -9,6 +9,9 @@ all_data = all_data.split('#index ')
 i = 0
 try:
     for data in all_data:
+        if i < 1712434:
+            i += 1
+            continue
         if i % 100 == 0:
             print i, ' of (domain)', len(all_data)
         i += 1
@@ -31,6 +34,9 @@ corrs = f.read().split('\n')
 i = 0
 try:
     for corr in corrs:
+        if i < 4258947:
+            i += 1
+            continue
         if i % 100 == 0:
             print i, ' of co-authors', len(corrs)
         i += 1
@@ -48,6 +54,9 @@ all_data = all_data.split('#index ')
 i = 0
 try:
     for data in all_data:
+        if i < 21431:
+            i += 1
+            continue
         if i % 100 == 0:
             print i, ' of (index)', len(all_data)
         i += 1
