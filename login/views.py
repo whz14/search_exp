@@ -1,4 +1,4 @@
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 import redis
 import os
@@ -19,10 +19,13 @@ client_id = '6580b23da11cade96de4'
 client_secret = '8241080482ce19be25c1a66ed142201f677d80c6'
 token_url = 'https://github.com/login/oauth/access_token'
 api_url = 'https://api.github.com/user?access_token='
+email = ''
+user = ''
 
 
 def get_h(p):
     return -p.h_index
+
 
 def get_times(pair):
     return -int(pair[1])
@@ -37,6 +40,10 @@ def login(request):
 
 
 def index(request):
+    return render(request, 'index.html', {'user': user, 'email': email})
+
+
+def redirect(request):
     code = request.GET.get('code')
     data = {'client_id': client_id,
             'client_secret': client_secret,
@@ -48,8 +55,11 @@ def index(request):
     token = res_jsn['access_token']
     ue_res = requests.get(api_url + token)
     ue_jsn = ue_res.json()
-
-    return render(request, 'index.html', {'user': ue_jsn['login'], 'email': ue_jsn['email']})
+    global email, user
+    user = ue_jsn['login']
+    email = ue_jsn['email']
+    return HttpResponseRedirect('/index')
+    # return render(request, 'index.html', {'user': ue_jsn['login'], 'email': ue_jsn['email']})
 
 
 def search(request):
@@ -82,7 +92,12 @@ def co_authors(request):
     coau_res = []
     for ind in res:
         all_info = r.get('#' + ind[0])
+        if all_info is None:
+            all_info = ''
         name = re.search(r'#n\s*(.*)\s', all_info)
-        coau_res.append({'name': name.group(1), 't': ind[1]})
+        if name is None:
+            coau_res.append({'name': 'None', 't': ind[1]})
+        else:
+            coau_res.append({'name': name.group(1), 't': ind[1]})
     print coau_res
-    return render(request, 'coauthors.html', {'lis': coau_res})
+    return JsonResponse({'lis': coau_res})
